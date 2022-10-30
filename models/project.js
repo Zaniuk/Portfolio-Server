@@ -1,6 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-const sharp = require("sharp");
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
     /**
@@ -39,9 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BLOB("long"),
         allowNull: false,
         get() {
-          return this.getDataValue("image").toString('utf8');
+          return this.getDataValue("image")?.toString('utf8');
         },
-        
       },
       github: {
         type: DataTypes.STRING,
