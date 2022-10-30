@@ -1,6 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-const webp = require('webp-converter');
 module.exports = (sequelize, DataTypes) => {
   class Certification extends Model {
     /**
@@ -32,13 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         get() {
           return this.getDataValue("image").toString("utf8");
-        },
-        set(image) {
-          let dataBase64 = image;
-          let result = webp.str2webpstr(dataBase64,"jpg","-q 60")
-          result.then((res)=>{
-            this.setDataValue("image", Buffer.from(res, "utf8"));
-          })
         }
       },
       company: {
