@@ -1,9 +1,9 @@
 const express = require("express");
 const { getContacts, deleteContact, createContact } = require("../controllers/contact");
 const router = express.Router();
-
-router.get('/', getContacts)
+const { verifyToken } = require("../middlewares/auth");
+router.get('/', verifyToken ,getContacts)
 router.post('/', createContact)
-router.delete('/:id', deleteContact)
+router.delete('/:id',verifyToken , deleteContact)
 
 module.exports = router;

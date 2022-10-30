@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {verifyToken } = require("../middlewares/auth");
 const {
   getCertifications,
   createCertification,
@@ -8,8 +9,8 @@ const {
 } = require("../controllers/certifications");
 
 router.get("/", getCertifications);
-router.post("/", createCertification);
-router.put("/:id", updateCertification);
-router.delete("/:id", deleteCertification);
+router.post("/", verifyToken ,createCertification);
+router.put("/:id", verifyToken ,updateCertification);
+router.delete("/:id", verifyToken ,deleteCertification);
 
 module.exports = router;
