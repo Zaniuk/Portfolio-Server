@@ -14,6 +14,7 @@ app.use('/projects', require('./routes/projects'));
 app.use('/certifications', require('./routes/certifications'));
 app.use('/home', require('./routes/home'));
 app.use('/contact', require('./routes/contact'));
+app.use('/auth', require('./routes/auth'));
 app.listen(3000, () => {
     console.log('Server on port 3000');
     try{
