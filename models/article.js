@@ -1,5 +1,4 @@
 'use strict';
-const webp = require('webp-converter');
 
 const {
   Model
@@ -22,14 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BLOB('long'),
       get() {
         return this.getDataValue('image').toString('utf8');
-      },
-      set(image) {
-        let dataBase64 = image;
-        let result = webp.str2webpstr(dataBase64,"jpg","-q 60")
-        result.then((res)=>{
-          this.setDataValue("image", Buffer.from(res, "utf8"));
-        })
-      }      
+      }
     }
   }, {
     sequelize,
