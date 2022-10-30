@@ -1,19 +1,19 @@
 const {Home} = require('../../models');
 const getHome = async (req, res) => {
-    const home = await Home.find({
+    const home = await Home.findOne({
         where: {
             id: 1
         }
     });
-    res.json({
+    res.json(
         home
-    });
+    );
 }
 const updateHome = async (req, res) => {
     const {greeting, subtitle, description} = req.body;
     const id = 1;
     try{
-        const home = await Home.update({
+        await Home.update({
             greeting,
             subtitle,
             description
@@ -24,9 +24,15 @@ const updateHome = async (req, res) => {
             }
             
         });
+        const newHome = await Home.findOne({
+            where: {
+                id
+            }
+        });
+
         res.json({
             message: 'Home updated successfully',
-            data: home
+            data: newHome
         });
     }catch(e){
         res.status(500).json({
