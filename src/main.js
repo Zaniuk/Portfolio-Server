@@ -6,7 +6,9 @@ const cors = require('cors');
 app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '10mb'
+}));
 app.get('/', (req, res) => {
     res.send('Hello World');
     }
