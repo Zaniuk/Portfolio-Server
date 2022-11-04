@@ -1,4 +1,5 @@
 const {Certification} = require('../../models');
+const { optimize } = require('../helpers/imagesHelper');
 const getCertifications = async (req, res) => {
   try {
     const certifications = await Certification.findAll();
@@ -18,7 +19,7 @@ const createCertification = async (req, res) => {
     const certification = await Certification.create({
       name,
       description,
-      image,
+      image : await optimize(image),
       company,
     });
     res.json(certification);
