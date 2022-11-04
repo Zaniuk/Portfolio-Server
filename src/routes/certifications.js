@@ -6,9 +6,11 @@ const {
   createCertification,
   updateCertification,
   deleteCertification,
+  getCertification,
 } = require("../controllers/certifications");
 
 router.get("/", getCertifications);
+router.get("/:id", getCertification);
 router.post("/", verifyToken ,createCertification);
 router.put("/:id", verifyToken ,updateCertification);
 router.delete("/:id", verifyToken ,deleteCertification);

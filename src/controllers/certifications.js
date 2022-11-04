@@ -58,6 +58,25 @@ const updateCertification = async (req, res) => {
   }
 };
 
+const getCertification = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const certification = await Certification.findOne({
+      where: {
+        id,
+      },
+    });
+    res.json(certification);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({
+      message: "Error al obtener la certificación",
+      errorData: e,
+    });
+  }
+};
+
+
 const deleteCertification = async (req, res) => {
   const { id } = req.params;
   try {
@@ -81,4 +100,5 @@ module.exports = {
   createCertification,
   updateCertification,
   deleteCertification,
+  getCertification,
 };
