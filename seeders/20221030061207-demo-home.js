@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert('Home', [{
       greeting: 'Hello',
       subtitle: 'I am a subtitle',
-      description: 'I am a description',
+      description: '<p>I am a description</p>',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
