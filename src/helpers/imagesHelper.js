@@ -1,5 +1,5 @@
 const tinify = require("tinify");
-const optimize = async (img) => {
+const optimize = async (image) => {
   tinify.key = process.env.TINIFY_API_KEY;
   const pre = image.split('base64,')[0];
   const uri = image.split(';base64,').pop()
