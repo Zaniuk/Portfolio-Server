@@ -27,6 +27,9 @@ module.exports = {
       github: {
         type: Sequelize.STRING
       },
+      tags: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

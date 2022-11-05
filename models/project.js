@@ -41,6 +41,13 @@ module.exports = (sequelize, DataTypes) => {
           return this.getDataValue("image")?.toString('utf8');
         },
       },
+      tags: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        get(){
+          return this.getDataValue("tags").split("|");
+        }
+      },
       github: {
         type: DataTypes.STRING,
         allowNull: false,

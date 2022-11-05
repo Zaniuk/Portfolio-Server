@@ -6,15 +6,16 @@ const getProjects = async (req, res) => {
   res.json(projects);
 };
 const createProject = async (req, res) => {
-  const { title, description, article, status, image, github } = req.body;
+  const { title, description, article, status, tags, image, github } = req.body;
   try {
     if (image) {
-      // optimize(image)
+      const tagsString = tags.join("|");
       const project = await Projects.create({
         title,
         description,
         article,
         status,
+        tags: tagsString,
         image: await optimize(image),
         github,
       });
@@ -33,7 +34,8 @@ const createProject = async (req, res) => {
 
 const updateProject = async (req, res) => {
   const { id } = req.params;
-  const { title, description, article, status, image, github } = req.body;
+  const { title, description, article, status,tags, image, github } = req.body;
+
   try {
     const project = await Projects.findOne({
       where: {
@@ -47,6 +49,7 @@ const updateProject = async (req, res) => {
             description,
             article,
             status,
+            tags: tags.join("|"),
             image,
             github,
           },
